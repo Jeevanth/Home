@@ -1,1 +1,36 @@
 
+import math 
+import csv
+import collections
+#import numpy as np
+#import matplotlib.pyplot as plt
+
+def read_file(): 
+    filename = "gravity.csv"
+    rows = [] 
+    with open(filename, 'r') as csvfile: 
+        csvreader = csv.reader(csvfile)
+        next(csvreader) 
+        for row in csvreader: 
+            rows.append(int(row[1])) 
+    return rows
+
+
+def mean(lst):
+    """calculates mean"""
+    sum = 0
+    for i in range(len(lst)):
+        sum += lst[i]
+    return (sum / len(lst))
+
+def stddev(lst):
+    """calculates standard deviation"""
+    sum = 0
+    mn = mean(lst)
+    for i in range(len(lst)):
+        sum += pow((lst[i]-mn),2)
+    return math.sqrt(sum/len(lst)-1)
+rows = []
+rows= read_file()
+print (mean(rows))
+print (stddev(rows))
